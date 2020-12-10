@@ -18,9 +18,9 @@ class _ActivityFeedPageState extends State<ActivityFeedPage> with AutomaticKeepA
       appBar: AppBar(
         title: Text(
           "Activity Feed",
-          style: TextStyle(color: Colors.black),
+          style: TextStyle(color: Colors.white),
         ),
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.black,
       ),
       body: buildActivityFeed(),
     );
@@ -191,8 +191,8 @@ openImage(BuildContext context, String imageId) {
           appBar: AppBar(
             title: Text('Photo',
                 style: TextStyle(
-                    color: Colors.black, fontWeight: FontWeight.bold)),
-            backgroundColor: Colors.white,
+                    color: Colors.white, fontWeight: FontWeight.bold)),
+            backgroundColor: Colors.black,
           ),
           body: ListView(
             children: <Widget>[

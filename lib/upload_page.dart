@@ -44,18 +44,20 @@ class _Uploader extends State<Uploader> {
   Widget build(BuildContext context) {
     return file == null
         ? IconButton(
+      color: Colors.black,
             icon: Icon(Icons.file_upload),
             onPressed: () => {_selectImage(context)})
         : Scaffold(
+      backgroundColor: Colors.black,
             resizeToAvoidBottomPadding: false,
             appBar: AppBar(
-              backgroundColor: Colors.white70,
+              backgroundColor: Colors.black,
               leading: IconButton(
                   icon: Icon(Icons.arrow_back, color: Colors.black),
                   onPressed: clearImage),
               title: const Text(
                 'Post to',
-                style: const TextStyle(color: Colors.black),
+                style: const TextStyle(color: Colors.white),
               ),
               actions: <Widget>[
                 FlatButton(

@@ -37,11 +37,10 @@ class _Feed extends State<Feed> with AutomaticKeepAliveClientMixin<Feed> {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Fluttergram',
+        title: const Text('Metanoya',
             style: const TextStyle(
-                fontFamily: "Billabong", color: Colors.black, fontSize: 35.0)),
-        centerTitle: true,
-        backgroundColor: Colors.white,
+                fontFamily: "Billabong", color: Colors.white, fontSize: 35.0)),
+        backgroundColor: Colors.black,
       ),
       body: RefreshIndicator(
         onRefresh: _refresh,
@@ -98,7 +97,7 @@ class _Feed extends State<Feed> with AutomaticKeepAliveClientMixin<Feed> {
         result = "Success in http request for feed";
       } else {
         result =
-            'Error getting a feed: Http status ${response.statusCode} | userId $userId';
+            'Error getting a feed: Http status ${response.statusCode} | userId $userId ';
       }
     } catch (exception) {
       result = 'Failed invoking the getFeed function. Exception: $exception';

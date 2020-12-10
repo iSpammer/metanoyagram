@@ -180,8 +180,8 @@ class _ProfilePage extends State<ProfilePage>
       if (currentUserId == profileId) {
         return buildFollowButton(
           text: "Edit Profile",
-          backgroundcolor: Colors.white,
-          textColor: Colors.black,
+          backgroundcolor: Colors.black,
+          textColor: Colors.white,
           borderColor: Colors.grey,
           function: editProfile,
         );
@@ -228,18 +228,18 @@ class _ProfilePage extends State<ProfilePage>
       return Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
-          IconButton(
-            icon: Icon(Icons.grid_on, color: isActiveButtonColor("grid")),
-            onPressed: () {
-              changeView("grid");
-            },
-          ),
-          IconButton(
-            icon: Icon(Icons.list, color: isActiveButtonColor("feed")),
-            onPressed: () {
-              changeView("feed");
-            },
-          ),
+          // IconButton(
+          //   icon: Icon(Icons.grid_on, color: isActiveButtonColor("grid")),
+          //   onPressed: () {
+          //     changeView("grid");
+          //   },
+          // ),
+          // IconButton(
+          //   icon: Icon(Icons.list, color: isActiveButtonColor("feed")),
+          //   onPressed: () {
+          //     changeView("feed");
+          //   },
+          // ),
         ],
       );
     }
@@ -317,9 +317,9 @@ class _ProfilePage extends State<ProfilePage>
               appBar: AppBar(
                 title: Text(
                   user.username,
-                  style: const TextStyle(color: Colors.black),
+                  style: const TextStyle(color: Colors.white),
                 ),
-                backgroundColor: Colors.white,
+                backgroundColor: Colors.black,
               ),
               body: ListView(
                 children: <Widget>[
@@ -327,47 +327,20 @@ class _ProfilePage extends State<ProfilePage>
                     padding: const EdgeInsets.all(16.0),
                     child: Column(
                       children: <Widget>[
-                        Row(
-                          children: <Widget>[
-                            CircleAvatar(
-                              radius: 40.0,
-                              backgroundColor: Colors.grey,
-                              backgroundImage: NetworkImage(user.photoUrl),
-                            ),
-                            Expanded(
-                              flex: 1,
-                              child: Column(
-                                children: <Widget>[
-                                  Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceEvenly,
-                                    children: <Widget>[
-                                      buildStatColumn("posts", postCount),
-                                      buildStatColumn("followers",
-                                          _countFollowings(user.followers)),
-                                      buildStatColumn("following",
-                                          _countFollowings(user.following)),
-                                    ],
-                                  ),
-                                  Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceEvenly,
-                                      children: <Widget>[
-                                        buildProfileFollowButton(user)
-                                      ]),
-                                ],
-                              ),
-                            )
-                          ],
+                        CircleAvatar(
+                          radius: 40.0,
+                          backgroundColor: Colors.grey,
+                          backgroundImage: NetworkImage(user.photoUrl),
                         ),
                         Container(
-                            alignment: Alignment.centerLeft,
+                            alignment: Alignment.center,
                             padding: const EdgeInsets.only(top: 15.0),
                             child: Text(
                               user.displayName,
                               style: TextStyle(fontWeight: FontWeight.bold),
                             )),
+                        buildProfileFollowButton(user),
+
                         Container(
                           alignment: Alignment.centerLeft,
                           padding: const EdgeInsets.only(top: 1.0),

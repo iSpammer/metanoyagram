@@ -41,6 +41,10 @@ dependencies:
   flare_flutter: ^1.8.3
   modal_progress_hud:
   animated_text_kit:
+  device_apps:
+  android_intent:
+  url_launcher:
+  bottom_navy_bar: ^5.6.0
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.

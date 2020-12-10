@@ -1,5 +1,8 @@
+import 'package:android_intent/android_intent.dart';
+import 'package:device_apps/device_apps.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'feed.dart';
 import 'upload_page.dart';
 import 'dart:async';
@@ -128,9 +131,9 @@ Future<void> tryCreateUserRecord(BuildContext context) async {
                       leading: Container(),
                       title: Text('Fill out missing data',
                           style: TextStyle(
-                              color: Colors.black,
+                              color: Colors.white,
                               fontWeight: FontWeight.bold)),
-                      backgroundColor: Colors.white,
+                      backgroundColor: Colors.black,
                     ),
                     body: ListView(
                       children: <Widget>[
@@ -167,7 +170,7 @@ class Fluttergram extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Fluttergram',
-      theme: ThemeData(
+      theme: ThemeData.dark(
           // This is the theme of your application.
           //
           // Try running your application with "flutter run". You'll see the
@@ -176,10 +179,8 @@ class Fluttergram extends StatelessWidget {
           // "hot reload" (press "r" in the console where you ran "flutter run",
           // or press Run > Flutter Hot Reload in IntelliJ). Notice that the
           // counter didn't reset back to zero; the application is not restarted.
-          primarySwatch: Colors.blue,
-          buttonColor: Colors.pink,
-          primaryIconTheme: IconThemeData(color: Colors.black)),
-      home: HomePage(title: 'Fluttergram'),
+         ),
+      home: HomePage(title: 'Metanoya'),
     );
   }
 }
@@ -199,6 +200,8 @@ class _HomePageState extends State<HomePage> {
   bool triedSilentLogin = false;
   bool setupNotifications = false;
 
+
+
   Scaffold buildLoginPage() {
     return Scaffold(
       body: Center(
@@ -207,7 +210,7 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             children: <Widget>[
               Text(
-                'MetanoyaGram',
+                'Metanoya\nMade with ♥💕 by Ossama',
                 style: TextStyle(
                     fontSize: 60.0,
                     fontFamily: "Billabong",
@@ -264,34 +267,44 @@ class _HomePageState extends State<HomePage> {
               physics: NeverScrollableScrollPhysics(),
               onPageChanged: onPageChanged,
             ),
-            bottomNavigationBar: CupertinoTabBar(
-              backgroundColor: Colors.white,
+            bottomNavigationBar: BottomNavigationBar(
+              backgroundColor: Colors.black12,
               items: <BottomNavigationBarItem>[
                 BottomNavigationBarItem(
                     icon: Icon(Icons.home,
-                        color: (_page == 0) ? Colors.black : Colors.grey),
+                        color: (_page == 0) ?Colors.white : Colors.black),
                     title: Container(height: 0.0),
-                    backgroundColor: Colors.white),
+                    ),
                 BottomNavigationBarItem(
                     icon: Icon(Icons.search,
-                        color: (_page == 1) ? Colors.black : Colors.grey),
+                        color: (_page == 1) ? Colors.white : Colors.black),
                     title: Container(height: 0.0),
-                    backgroundColor: Colors.white),
+                    ),
                 BottomNavigationBarItem(
                     icon: Icon(Icons.add_circle,
-                        color: (_page == 2) ? Colors.black : Colors.grey),
+                        color: (_page == 2) ? Colors.white : Colors.black),
                     title: Container(height: 0.0),
-                    backgroundColor: Colors.white),
+                    ),
                 BottomNavigationBarItem(
                     icon: Icon(Icons.star,
-                        color: (_page == 3) ? Colors.black : Colors.grey),
+                        color: (_page == 3) ? Colors.white : Colors.black),
                     title: Container(height: 0.0),
-                    backgroundColor: Colors.white),
+                    ),
                 BottomNavigationBarItem(
                     icon: Icon(Icons.person,
-                        color: (_page == 4) ? Colors.black : Colors.grey),
+                        color: (_page == 4) ?Colors.white : Colors.black),
                     title: Container(height: 0.0),
-                    backgroundColor: Colors.white),
+                    ),
+                BottomNavigationBarItem(
+                    icon: Icon(Icons.chat,
+                        color: (_page == 5) ? Colors.white : Colors.black),
+                    title: Container(height: 0.0),
+                    ),
+                BottomNavigationBarItem(
+                    icon: Icon(Icons.favorite,
+                        color: (_page == 6) ? Colors.white : Colors.black),
+                    title: Container(height: 0.0),
+                    ),
               ],
               onTap: navigationTapped,
               currentIndex: _page,
@@ -320,12 +333,43 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  _openMetanoyaChatAdmin () async
+  {
+  bool isInstalled = await DeviceApps.isAppInstalled('ispam.glistenersadmin');
+  if (isInstalled != false)
+  {
+    AndroidIntent intent = AndroidIntent(
+        action: 'action_view',
+    );
+    await intent.launch();
+  }
+  // else
+  // {
+  //   // String url = dt;
+  //   // if (await canLaunch(url))
+  //   //   await launch(url);
+  //   // else
+  //   //   throw 'Could not launch $url';
+  // }
+  }
+
   void navigationTapped(int page) {
+    print("heeee");
+    if(page == 5){
+      AndroidIntent intent = AndroidIntent(package: "ispam.glisteners", action: "action_view");
+      intent.launch();
+    }
+    if (page == 6){
+      _openMetanoyaChatAdmin();
+    }
+    else{
+      pageController.jumpToPage(page);
+    }
     //Animating Page
-    pageController.jumpToPage(page);
   }
 
   void onPageChanged(int page) {
+
     setState(() {
       this._page = page;
     });
